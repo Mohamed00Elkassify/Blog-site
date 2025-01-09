@@ -4,12 +4,12 @@
 <h1>Blog Site</h1>
 {% for post in posts %}
 <h2>
-    <a href="{% url 'blog:post_detail' post.id %}">{{ post.title }}</a>
+    {{ post.title }}
 </h2>
 <p class="date">Published {{ post.publish }} by {{ post.author }}</p>
 <div class="post-body">
     {{ post.body|truncatewords:20|linebreaks }}
 </div>
-<a href="{% url 'blog:post_detail' post.id %}" class="read-more">Read -></a>
+<a href="{{ post.get_absolute_url }}" class="read-more">Read more</a>
 {% endfor %}
 {% endblock %}
