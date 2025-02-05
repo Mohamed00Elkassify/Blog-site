@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger 
 from .models import Post
+from .forms import EmailPostForm
 # Create your views here.
 
 # post_list is a view that retrieves all published posts
@@ -23,5 +24,29 @@ def post_list(request):
 
 # post_detail is a view that retrieves a single post by its id
 def post_detail(request, year, month, day, post):
-    post = get_object_or_404(Post, status=Post.Status.PUBLISHED, publish__year=year, publish__month=month, publish__day=day, slug=post)
+    post = get_object_or_404(
+        Post, 
+        status=Post.Status.PUBLISHED,
+        publish__year=year, 
+        publish__month=month, 
+        publish__day=day, 
+        slug=post
+    )
     return render(request, 'blog/post/detail.html', {'post': post})
+
+def post_share(request, post_id):
+    post = get_object_or_404(
+        Post,
+        id = post_id,
+        status = Post.Status.PUBLISHED
+    )
+    if request.method == 'POST':
+        # Form was submitted
+        form = EmailPostForm(request.POST)
+        if form.is_valid():
+            # Form fields passed validation
+            cd = form.cleaned_data
+            # send email
+        else:
+            form  = EmailPostForm()
+    return render(request, 'blog/post/share.html', {'post' : post, 'form' : form})
