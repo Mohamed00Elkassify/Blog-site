@@ -114,18 +114,3 @@ a.back:hover {
     background: var(--hovering-color);
     transform: translateX(-5px);
 }
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    body {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-    }
-
-    #sidebar {
-        position: static;
-    }
-
-    h1 { font-size: 2rem; }
-    h2 a { font-size: 1.5rem; }
-}
