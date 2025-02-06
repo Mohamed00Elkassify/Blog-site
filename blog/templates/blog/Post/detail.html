@@ -11,6 +11,11 @@
         </p>
         <div>
             {{ post.body|linebreaks }}
+            <p>
+                <a href="{% url 'blog:post_share' post.id %}" class="share-link">
+                    Share this post →
+                </a>
+            </p>
         </div>
     </div>
 </div>

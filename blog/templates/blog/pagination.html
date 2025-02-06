@@ -1,3 +1,10 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/blog.css' %}">
+</head>
+<body>
 <div class="pagination">
     <span class="step-link">
         {% if page.has_previous %}
@@ -11,43 +18,5 @@
         {% endif %}
     </span>
 </div>
-<style>
-    /* pagination styles */
-    .pagination {
-        margin-top: 3rem;
-        display: flex;
-        justify-content: center;
-    }
-    
-    .step-link {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-    }
-    
-    .pagination a {
-        background: var(--secondary-color);
-        color: white;
-        text-decoration: none;
-        padding: 0.5rem 1rem;
-        border-radius: 25px;
-        display: flex;
-        align-items: center;
-        transition: all 0.3s ease;
-    }
-    
-
-    
-    .pagination a:hover {
-        background: var(--hovering-color);
-        transform: translateY(-2px);
-    }
-    
-    .pagination .current {
-        font-weight: 500;
-        color: var(--primary-color);
-        background: #dfe6e9;
-        padding: 0.5rem 1rem;
-        border-radius: 25px;
-    }
-</style>
+</body>
+</html>
