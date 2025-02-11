@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Comment
 # Register your models here.
 
 # use the @admin.register decorator to register the Post model with the admin site same as admin.site.register(Post)
@@ -7,9 +7,9 @@ from .models import Post
 # create a class that inherits from admin.ModelAdmin and customize the display of the Post model in the admin interface
 class PostAdmin(admin.ModelAdmin):
     # list_display attribute allows you to set the fields of your model that you want to display on the admin object list page
-    list_display = ('title', 'slug', 'author', 'publish', 'status')
+    list_display = ['title', 'slug', 'author', 'publish', 'status']
     # list_filter attribute allows you to filter the results of the admin object list page by the fields included in list_filter
-    list_filter = ('status', 'created', 'publish', 'author')
+    list_filter = ['status', 'created', 'publish', 'author']
     # search_fields attribute allows you to define the fields on which you want to enable a search box on the admin object list page
     search_fields = ['title', 'body']
     # prepopulated_fields attribute is a dictionary that maps field names to the fields it depends on
@@ -23,3 +23,9 @@ class PostAdmin(admin.ModelAdmin):
     ordering = ['status', 'publish']
     # show_facets you can use in a ModelAdmin class to control the display of facets (counts) in the admin interface
     show_facets = admin.ShowFacets.ALWAYS
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'post', 'created']
+    list_filter = ['created', 'updated']
+    search_fields = ['name', 'email', 'body']
